@@ -64,7 +64,7 @@ PARA CADA ITEM QUE FOI INSERIDO
 
 ### Teste 5 - Remover com colisõa
 |pos|value| colisões |
----
+---|---|---|
 |0|46| -> null|
 |1|joao| -> rafalli -> manu -> perna|
 |2|96| -> null|
