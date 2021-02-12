@@ -1,7 +1,7 @@
 # Definições
 
 ## Hash Function
-```math h(k) = k mod m```
+``` h(k) = k mod m```
 
 m: tamanho da tabela
 k: chave
