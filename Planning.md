@@ -63,14 +63,33 @@ PARA CADA ITEM QUE FOI INSERIDO
 - Remove um e verifica se aquela posição agora é nula 
 
 ### Teste 5 - Remover com colisõa
+
+Testa se consegue remover dados de uma lista que possui colisão
+- Cria uma lista de tamanho 7, com 12 elementos
+
+
+## Tabelas usadas nos testes
+
+### Tabela sem colisão
+
 pos|value| colisões 
 ---|---|---
-0|46| -> null
-1|joao| -> rafalli -> manu -> perna
-2|96| -> null
-3|9,22| -> gustavo -> Ykky
-4|pedro| -> null
-5|rodrigo| -> vinicius
-6|fuinha| -> null
-Testa se consegue remover dados de uma lista que possui colisão
-- Cria uma lista de tamanho 7, com 15 elementos
+0|46 ->| null
+1|joao| null
+2|96 ->|null
+3|9,22 ->| null
+4|pedro ->| null
+5|rodrigo ->| null
+6|fuinha ->| null
+
+### Tabela com colisão
+
+pos|value| colisões 
+---|---|---
+0|46 ->|  null
+1|joao ->|  rafalli -> manu -> perna
+2|96 ->|  null
+3|9,22 ->|  gustavo -> Ykky
+4|pedro ->|  null
+5|rodrigo ->|  vinicius
+6|fuinha ->|  null
