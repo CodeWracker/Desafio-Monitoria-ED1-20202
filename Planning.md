@@ -66,13 +66,40 @@ PARA CADA ITEM QUE FOI INSERIDO
 
 Testa se consegue remover dados de uma lista que possui colisão
 - Cria uma lista de tamanho 7, com 12 elementos
+- Remove o primeiro do indice 5
+- Verifica se o indice 5 continua tendo colisão (não deveria ter)
+- Verfica se o primeiro da lista de colisões do indice 1 corresponde ao esperado (antigo 2o)
+- Remove a ultima colisão do indice 3
+- Verifia se o indice 3 segue tendo colisão
+- Verifica o tamanho da colisão agora
+- Verifica se os valores da lista de posição está correta
+- Remove o 2 segundo item da lista de colisões do indice 1
+- Verifica se segue tendo colisão
+- Verifica o tamanho da lista
+- Verifica se os valores da lista estão corretos
+
+### Teste 6 - Destruir sem colisão
+Testa se consegue limpar uma lista sem colisão e liberar ela
+- Cria uma lista de tamanho 7 e toda cheia
+- Destroi
+- Verifica se foi destruida
+- Cria uma lista de tamanho 11 com 8 elementos
+- Destroi
+- Verifica se foi destruida
+
+### Teste 7 - Destruir com colisão
+Testa se consegue destruir uma lista que possui colisão
+- Cria uma lista de tamanho 7 com 12 elementos
+- Destroi
+- Verifica se foi destruido
 
 
 ## Tabelas usadas nos testes
 
+
 ### Tabela sem colisão
 
-pos|value| colisões 
+pos|value| lista de colisões 
 ---|---|---
 0|46 ->| null
 1|joao| null
@@ -84,7 +111,7 @@ pos|value| colisões
 
 ### Tabela com colisão
 
-pos|value| colisões 
+pos|value| lista de colisões 
 ---|---|---
 0|46 ->|  null
 1|joao ->|  rafalli -> manu -> perna
