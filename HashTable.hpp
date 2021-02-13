@@ -86,9 +86,15 @@ void destroiHashTable(HashTable<TKey, TData> *tabela)
 template <typename TKey, typename TData>
 void removerDaHashTable(HashTable<TKey, TData> *tabela, TKey chave) {}
 template <typename TKey, typename TData>
-Elemento<TKey, TData> *buscarNaHashTable(HashTable<TKey, TData> *tabela, TKey chave)
+Elemento<TKey, TData> *buscarElementoNaHashTable(HashTable<TKey, TData> *tabela, TKey chave)
 {
     Elemento<TKey, TData> *busca;
+
+    return busca;
+}
+ListaEncadeada<TKey, TData> *buscarListaNaHashTable(HashTable<TKey, TData> *tabela, TKey chave)
+{
+    ListaEncadeada<TKey, TData> *busca;
 
     return busca;
 }

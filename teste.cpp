@@ -106,20 +106,20 @@ TEST(HashTableTest, TesteBuscaSemColisao)
     string val1 = "meire";
     int c2 = 1;
     string val2 = "joao";
-    int c3 = 0;
+    int c3 = 2;
     string val3 = "julio";
     adicionarNaHashTable(tabela, &c1, &val1);
     adicionarNaHashTable(tabela, &c2, &val2);
     adicionarNaHashTable(tabela, &c3, &val3);
     Elemento<int, string> *busca;
 
-    busca = buscarNaHashTable(tabela, c1);
+    busca = buscarElementoNaHashTable(tabela, c1);
     ASSERT_EQ(*busca->_dado, val1);
 
-    busca = buscarNaHashTable(tabela, c2);
+    busca = buscarElementoNaHashTable(tabela, c2);
     ASSERT_EQ(*busca->_dado, val2);
 
-    busca = buscarNaHashTable(tabela, c3);
+    busca = buscarElementoNaHashTable(tabela, c3);
     ASSERT_EQ(*busca->_dado, val3);
 
     destroiHashTable(tabela);
@@ -130,12 +130,12 @@ TEST(HashTableTest, TesteBuscaComColisao)
     pos|value| lista de colisões 
     ---|---|---
     0|meire ->|  nullptr
-    1|joao ->|  rafalli -> manu -> perna
+    1|joao ->|  rafaelli -> manu -> perna
     2|julio ->|  gustavo -> Ykky
     3|carol ->|  vinicius
     */
     HashTable<string, string> *tabela;
-    int tam = 3;
+    int tam = 4;
     inicializaHashTable(tabela, &tam);
     string c1 = "A";
     string val1 = "meire";
@@ -145,17 +145,17 @@ TEST(HashTableTest, TesteBuscaComColisao)
     string val3 = "julio";
     string c4 = "D";
     string val4 = "carol";
-    string c5 = "B";
+    string c5 = "F";
     string val5 = "rafaelli";
-    string c6 = "B";
+    string c6 = "J";
     string val6 = "manu";
-    string c7 = "B";
+    string c7 = "O";
     string val7 = "perna";
-    string c8 = "C";
+    string c8 = "G";
     string val8 = "gustavo";
-    string c9 = "C";
+    string c9 = "K";
     string val9 = "Ykky";
-    string c10 = "D";
+    string c10 = "H";
     string val10 = "vinicius";
 
     adicionarNaHashTable(tabela, &c1, &val1);
@@ -170,47 +170,103 @@ TEST(HashTableTest, TesteBuscaComColisao)
     adicionarNaHashTable(tabela, &c10, &val10);
     Elemento<string, string> *busca;
 
-    busca = buscarNaHashTable(tabela, c3);
+    busca = buscarElementoNaHashTable(tabela, c3);
     ASSERT_EQ(*busca->_dado, val3);
 
-    busca = buscarNaHashTable(tabela, c9);
+    busca = buscarElementoNaHashTable(tabela, c9);
     ASSERT_EQ(*busca->_dado, val9);
 
-    busca = buscarNaHashTable(tabela, c6);
+    busca = buscarElementoNaHashTable(tabela, c6);
     ASSERT_EQ(*busca->_dado, val6);
 
     destroiHashTable(tabela);
 }
 TEST(HashTableTest, TesteRemoveSemColisao)
 {
-    /*
-        Testa se consegue remover dados de uma lista que não possui nenhuma colisão
-        - Cria uma lista de tamanho 7, com 7 elementos
-        PARA CADA ITEM QUE FOI INSERIDO
-        - Remove um e verifica se aquela posição agora é nula 
-        - Cria uma lista de tamanho 7 com 5 elementos
-        - tenta remover de um elemento nulo (deve dar um throw error)
-    */
-    ASSERT_EQ(1, 1);
+
+    HashTable<int, string> *tabela;
+    int tam = 3;
+    inicializaHashTable(tabela, &tam);
+    int c1 = 0;
+    string val1 = "meire";
+    int c2 = 1;
+    string val2 = "joao";
+    int c3 = 2;
+    string val3 = "julio";
+    adicionarNaHashTable(tabela, &c1, &val1);
+    adicionarNaHashTable(tabela, &c2, &val2);
+    adicionarNaHashTable(tabela, &c3, &val3);
+    Elemento<int, string> *busca;
+    busca = buscarElementoNaHashTable(tabela, c3);
+    ASSERT_EQ(*busca->_dado, val3);
+
+    removerDaHashTable(tabela, c3);
+    busca = buscarElementoNaHashTable(tabela, c3);
+    ASSERT_EQ(busca, nullptr);
 }
 TEST(HashTableTest, TesteRemoveComColisao)
 {
+
     /*
-        Testa se consegue remover dados de uma lista que possui colisão
-        - Cria uma lista de tamanho 7, com 12 elementos
-        - Remove o primeiro do indice 5
-        - Verifica se o indice 5 continua tendo colisão (não deveria ter)
-        - Verfica se o primeiro da lista de colisões do indice 1 corresponde ao esperado (antigo 2o)
-        - Remove a ultima colisão do indice 3
-        - Verifia se o indice 3 segue tendo colisão
-        - Verifica o tamanho da colisão agora
-        - Verifica se os valores da lista de posição está correta
-        - Remove o 2 segundo item da lista de colisões do indice 1
-        - Verifica se segue tendo colisão
-        - Verifica o tamanho da lista
-        - Verifica se os valores da lista estão corretos
-*/
-    ASSERT_EQ(1, 1);
+    pos|value| lista de colisões 
+    ---|---|---
+    0|meire ->|  nullptr
+    1|joao ->|  rafaelli -> manu -> perna
+    2|julio ->|  gustavo -> Ykky
+    3|carol ->|  vinicius
+    */
+    HashTable<string, string> *tabela;
+    int tam = 4;
+    inicializaHashTable(tabela, &tam);
+    string c1 = "A";
+    string val1 = "meire";
+    string c2 = "B";
+    string val2 = "joao";
+    string c3 = "C";
+    string val3 = "julio";
+    string c4 = "D";
+    string val4 = "carol";
+    string c5 = "F";
+    string val5 = "rafaelli";
+    string c6 = "J";
+    string val6 = "manu";
+    string c7 = "O";
+    string val7 = "perna";
+    string c8 = "G";
+    string val8 = "gustavo";
+    string c9 = "K";
+    string val9 = "Ykky";
+    string c10 = "H";
+    string val10 = "vinicius";
+
+    adicionarNaHashTable(tabela, &c1, &val1);
+    adicionarNaHashTable(tabela, &c2, &val2);
+    adicionarNaHashTable(tabela, &c3, &val3);
+    adicionarNaHashTable(tabela, &c4, &val4);
+    adicionarNaHashTable(tabela, &c5, &val5);
+    adicionarNaHashTable(tabela, &c6, &val6);
+    adicionarNaHashTable(tabela, &c7, &val7);
+    adicionarNaHashTable(tabela, &c8, &val8);
+    adicionarNaHashTable(tabela, &c9, &val9);
+    adicionarNaHashTable(tabela, &c10, &val10);
+    ListaEncadeada<string, string> *busca;
+
+    busca = buscarListaNaHashTable(tabela, c4);
+    ASSERT_EQ(busca, tabela->_itens[3]);
+
+    removerDaHashTable(tabela, c4);
+    busca = buscarListaNaHashTable(tabela, c10);
+    ASSERT_EQ(*busca->_primeiro->_dado, val10);
+
+    removerDaHashTable(tabela, c9);
+    busca = buscarListaNaHashTable(tabela, c3);
+    ASSERT_EQ(busca->_primeiro->_proximo->_proximo, nullptr);
+
+    removerDaHashTable(tabela, c5);
+    busca = buscarListaNaHashTable(tabela, c2);
+    ASSERT_EQ(*busca->_primeiro->_proximo->_dado, val6);
+
+    destroiHashTable(tabela);
 }
 TEST(HashTableTest, TesteDestroiSemColisao)
 {
@@ -223,7 +279,22 @@ TEST(HashTableTest, TesteDestroiSemColisao)
         - Destroi
         - Verifica se foi destruida
 */
-    ASSERT_EQ(1, 1);
+    HashTable<int, string> *tabela;
+    int tam = 3;
+    inicializaHashTable(tabela, &tam);
+    int c1 = 0;
+    string val1 = "meire";
+    int c2 = 1;
+    string val2 = "joao";
+    int c3 = 2;
+    string val3 = "julio";
+    adicionarNaHashTable(tabela, &c1, &val1);
+    adicionarNaHashTable(tabela, &c2, &val2);
+    adicionarNaHashTable(tabela, &c3, &val3);
+
+    destroiHashTable(tabela);
+    ASSERT_EQ(tabela, nullptr);
+    // O teste mesmo é no valgrind, para verificar se não tem leak
 }
 TEST(HashTableTest, TesteDestroiComColisao)
 {
@@ -233,7 +304,44 @@ TEST(HashTableTest, TesteDestroiComColisao)
         - Destroi
         - Verifica se foi destruido
     */
-    ASSERT_EQ(1, 1);
+    HashTable<string, string> *tabela;
+    int tam = 4;
+    inicializaHashTable(tabela, &tam);
+    string c1 = "A";
+    string val1 = "meire";
+    string c2 = "B";
+    string val2 = "joao";
+    string c3 = "C";
+    string val3 = "julio";
+    string c4 = "D";
+    string val4 = "carol";
+    string c5 = "F";
+    string val5 = "rafaelli";
+    string c6 = "J";
+    string val6 = "manu";
+    string c7 = "O";
+    string val7 = "perna";
+    string c8 = "G";
+    string val8 = "gustavo";
+    string c9 = "K";
+    string val9 = "Ykky";
+    string c10 = "H";
+    string val10 = "vinicius";
+
+    adicionarNaHashTable(tabela, &c1, &val1);
+    adicionarNaHashTable(tabela, &c2, &val2);
+    adicionarNaHashTable(tabela, &c3, &val3);
+    adicionarNaHashTable(tabela, &c4, &val4);
+    adicionarNaHashTable(tabela, &c5, &val5);
+    adicionarNaHashTable(tabela, &c6, &val6);
+    adicionarNaHashTable(tabela, &c7, &val7);
+    adicionarNaHashTable(tabela, &c8, &val8);
+    adicionarNaHashTable(tabela, &c9, &val9);
+    adicionarNaHashTable(tabela, &c10, &val10);
+
+    destroiHashTable(tabela);
+    ASSERT_EQ(tabela, nullptr);
+    // O teste mesmo é no valgrind, para verificar se não tem leak
 }
 
 int main(int argc, char **argv)

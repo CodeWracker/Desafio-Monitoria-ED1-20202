@@ -63,28 +63,28 @@ Testa se consegue Criar a tabela e inserir algum dado nela, causando colisões
 - nos que deram colisão, verifica se eles estão na posição correta na lista encadeada
 
 
-### Teste 4 - Remover sem colisão
-Testa se consegue remover dados de uma lista que não possui nenhuma colisão
-- Cria uma lista de tamanho 7, com 7 elementos
-PARA CADA ITEM QUE FOI INSERIDO
-- Remove um e verifica se aquela posição agora é nula 
-- Cria uma lista de tamanho 7 com 5 elementos
-- tenta remover de um elemento nulo (deve dar um throw error)
-
-### Teste 5 - Buscar em tabela sem colisão
+### Teste 4 - Buscar em tabela sem colisão
 Testar se consegue retornar um elemento em uma tabela sem colisão
 Ele nusca a partir do hash da chave e na lista salva tb a chave
 
-### Teste 6 - Buscar em tabela com colisão
+### Teste 5 - Buscar em tabela com colisão
 Testar se consegue retornar um elemento em uma tabela com colisão
+
+### Teste 6 - Remover sem colisão
+Testa se consegue remover dados de uma lista que não possui nenhuma colisão
+- Cria uma lista de tamanho 3, com 3 elementos
+PARA CADA ITEM QUE FOI INSERIDO
+- Remove um e verifica se aquela posição agora é nula 
+- Cria uma lista de tamanho 3 com 3 elementos
+- tenta remover de um elemento nulo (deve dar um throw error)
 
 ### Teste 7 - Remover com colisõa
 
 Testa se consegue remover dados de uma lista que possui colisão
-- Cria uma lista de tamanho 7, com 13 elementos
-- Remove o primeiro do indice 5
-- Verifica se o indice 5 continua tendo colisão (não deveria ter)
-- Verfica se o primeiro da lista de colisões do indice 1 corresponde ao esperado (antigo 2o)
+- Cria uma lista de tamanho 4, com 10 elementos
+- Remove o primeiro do indice 4
+- Verifica se o indice 4 continua tendo colisão (não deveria ter)
+- Verfica se o primeiro da lista de colisões do indice 4 corresponde ao esperado (antigo 2o)
 - Remove a ultima colisão do indice 3
 - Verifia se o indice 3 segue tendo colisão
 - Verifica o tamanho da colisão agora
@@ -127,6 +127,6 @@ pos|value| lista de colisões
 pos|value| lista de colisões 
 ---|---|---
 0|meire ->|  nullptr
-1|joao ->|  rafalli -> manu -> perna
+1|joao ->|  rafaelli -> manu -> perna
 2|julio ->|  gustavo -> Ykky
 3|carol ->|  vinicius
