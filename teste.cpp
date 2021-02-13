@@ -16,7 +16,7 @@ TEST(HashTableTest, TesteInicializaTabela)
     ASSERT_EQ(tabela->_tamanho, 7);
     for (int i = 0; i < 7; i++)
     {
-        ASSERT_EQ(tabela->_itens[i], nullptrptr) << "O item na posição " << i << " não é nulo";
+        ASSERT_EQ(tabela->_itens[i], nullptr) << "O item na posição " << i << " não é nulo";
     }
 }
 TEST(HashTableTest, TesteInsereSemColizao)
