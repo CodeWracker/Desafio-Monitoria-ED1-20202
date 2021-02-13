@@ -12,7 +12,10 @@ HashTable *inicializaHashTable(int tamanho)
         throw impossivel_criar_tabela_exception();
     return tabela;
 }
-void destroiHashTable(HashTable *tabela);
+void destroiHashTable(HashTable *tabela)
+{
+    free(tabela);
+}
 template <typename TKey, typename TData>
 void adicionarNaHashTable(HashTable *tabela, TKey chave, TData valor);
 template <typename TKey, typename TData>

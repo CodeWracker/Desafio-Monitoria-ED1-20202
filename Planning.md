@@ -42,6 +42,7 @@ Testa se consegue Criar a tabela e inserir algum dado nela
 - insere um elemento com float na chave e no valor
 - insere um elemento com char na chave e no valor
 - verifica se os elementos estão na lista e se não houve colisão
+- Tenta inserir um valor usando A MESMA chave (retorna um erro)
 
 ## Teste 3 - Insere com colisão
 Testa se consegue Criar a tabela e inserir algum dado nela, causando colisões
@@ -53,8 +54,10 @@ Testa se consegue Criar a tabela e inserir algum dado nela, causando colisões
 - insere 2 elementos com double na chave e no valor
 - insere 2 elementos com float na chave e no valor
 - insere 2 elementos com char na chave e no valor
+- Tenta inserir um valor usando A MESMA chave num que ja tem colisão(retorna um erro)
 - verifica se os elementos estão na lista e se não houve colisão (No caso, como cria uma lista encadeada, vai verificar se o primeiro é o primeiro da lista)
 - nos que deram colisão, verifica se eles estão na posição correta na lista encadeada
+
 
 ### Teste 4 - Remover sem colisão
 Testa se consegue remover dados de uma lista que não possui nenhuma colisão
@@ -64,7 +67,14 @@ PARA CADA ITEM QUE FOI INSERIDO
 - Cria uma lista de tamanho 7 com 5 elementos
 - tenta remover de um elemento nulo (deve dar um throw error)
 
-### Teste 5 - Remover com colisõa
+### Teste 5 - Buscar em tabela sem colisão
+Testar se consegue retornar um elemento em uma tabela sem colisão
+Ele nusca a partir do hash da chave e na lista salva tb a chave
+
+### Teste 6 - Buscar em tabela com colisão
+Testar se consegue retornar um elemento em uma tabela com colisão
+
+### Teste 7 - Remover com colisõa
 
 Testa se consegue remover dados de uma lista que possui colisão
 - Cria uma lista de tamanho 7, com 12 elementos
@@ -80,7 +90,7 @@ Testa se consegue remover dados de uma lista que possui colisão
 - Verifica o tamanho da lista
 - Verifica se os valores da lista estão corretos
 
-### Teste 6 - Destruir sem colisão
+### Teste 8 - Destruir sem colisão
 Testa se consegue limpar uma lista sem colisão e liberar ela
 - Cria uma lista de tamanho 7 e toda cheia
 - Destroi
@@ -89,7 +99,7 @@ Testa se consegue limpar uma lista sem colisão e liberar ela
 - Destroi
 - Verifica se foi destruida
 
-### Teste 7 - Destruir com colisão
+### Teste 9 - Destruir com colisão
 Testa se consegue destruir uma lista que possui colisão
 - Cria uma lista de tamanho 7 com 12 elementos
 - Destroi

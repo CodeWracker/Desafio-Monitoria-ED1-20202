@@ -22,7 +22,7 @@ TEST(HashTableTest, TesteinicializaHashTable)
     HashTable *table = inicializaHashTable(17);
     for (int i = 0; i < 17; i++)
     {
-        ASSERT_EQ(tabela->_itens[i], nullptr) << "O item na posição " << i << " não é nulo";
+        ASSERT_EQ(table->_itens[i], nullptr) << "O item na posição " << i << " não é nulo";
     }
     destroiHashTable(table);
 }
@@ -57,6 +57,14 @@ TEST(HashTableTest, TesteInsereComColizao)
         - nos que deram colisão, verifica se eles estão na posição correta na lista encadeada
     */
     ASSERT_EQ(1, 1);
+}
+TEST(HashTableTest, TesteBuscaSemColisao)
+{
+    /*Falta Planejar*/
+}
+TEST(HashTableTest, TesteBuscaComColisao)
+{
+    /*Falta Planejar*/
 }
 TEST(HashTableTest, TesteRemoveSemColisao)
 {
