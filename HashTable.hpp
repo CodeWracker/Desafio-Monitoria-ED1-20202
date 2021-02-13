@@ -20,13 +20,13 @@ typedef struct
     Elemento **_itens;
 } HashTable;
 
-HashTable *inicializaTabela(int tamanho);
+HashTable *inicializaHashTable(int tamanho);
 void destroiHashTable(HashTable *tabela);
 template <typename TKey, typename TData>
-void adiciona(HashTable *tabela, TKey chave, TData valor);
+void adicionarNaHashTable(HashTable *tabela, TKey chave, TData valor);
 template <typename TKey, typename TData>
-void remove(HashTable *tabela, TKey chave, TData valor);
+void removerDaHashTable(HashTable *tabela, TKey chave, TData valor);
 template <typename TKey, typename TData>
-ListaEncadeada *buscar(HashTable *tabela, TKey chave, TData valor);
+ListaEncadeada *buscarNaHashTable(HashTable *tabela, TKey chave, TData valor);
 
 #endif /* HASHTABLE_HPP */

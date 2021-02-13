@@ -3,7 +3,7 @@
 #include "HashTable.hpp"
 #include "ListaEncadeada.hpp"
 
-TEST(HashTableTest, TesteInicializaTabela)
+TEST(HashTableTest, TesteinicializaHashTable)
 {
     /*
         Testa se está criando certo a Tabela
@@ -12,12 +12,19 @@ TEST(HashTableTest, TesteInicializaTabela)
         - Inicia outra vazia com tamanho 17
         - Verifica se ta tudo vazio mesmo
     */
-    HashTable *tabela = inicializaTabela(7);
+    HashTable *tabela = inicializaHashTable(7);
     ASSERT_EQ(tabela->_tamanho, 7);
     for (int i = 0; i < 7; i++)
     {
         ASSERT_EQ(tabela->_itens[i], nullptr) << "O item na posição " << i << " não é nulo";
     }
+    destroiHashTable(tabela);
+    HashTable *table = inicializaHashTable(17);
+    for (int i = 0; i < 17; i++)
+    {
+        ASSERT_EQ(tabela->_itens[i], nullptr) << "O item na posição " << i << " não é nulo";
+    }
+    destroiHashTable(table);
 }
 TEST(HashTableTest, TesteInsereSemColizao)
 {
