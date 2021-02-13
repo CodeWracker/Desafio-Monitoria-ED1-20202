@@ -22,24 +22,46 @@ class lista_encadeada_vazia_exception : public std::exception
         return "Lista encadeada vazia";
     }
 };
-
-typedef struct
+template <typename TKey, typename TData>
+struct ListaEncadeada
 {
-    Elemento *_primeiro;
+    Elemento<TKey, TData> *_primeiro;
     int _quantidade;
-} ListaEncadeada;
+};
+template <typename TKey, typename TData>
+ListaEncadeada<TKey, TData> *iniciaListaEncadeada();
 
-ListaEncadeada *iniciaListaEncadeada();
-void destroiListaEncadeada(ListaEncadeada *umaLista);
-bool listaVazia(ListaEncadeada *umaLista);
-int posicao(ListaEncadeada *umaLista, void *umDado);
-bool contem(ListaEncadeada *umaLista, void *umDado);
-void adicionaNoInicio(ListaEncadeada *umaLista, void *umDado);
-void adicionaNaPosicao(ListaEncadeada *umaLista, void *umDado, int umaPosicao);
-void adicionaNoFim(ListaEncadeada *umaLista, void *umDado);
-void *retiraDoInicio(ListaEncadeada *umaLista);
-void *retiraDaPosicao(ListaEncadeada *umaLista, int umaPosicao);
-void *retiraDoFim(ListaEncadeada *umaLista);
-void *retiraEspecifico(ListaEncadeada *umaLista, void *umDado);
+template <typename TKey, typename TData>
+void destroiListaEncadeada(ListaEncadeada<TKey, TData> *umaLista);
+
+template <typename TKey, typename TData>
+bool listaVazia(ListaEncadeada<TKey, TData> *umaLista);
+
+template <typename TKey, typename TData>
+int posicao(ListaEncadeada<TKey, TData> *umaLista, void *umDado);
+
+template <typename TKey, typename TData>
+bool contem(ListaEncadeada<TKey, TData> *umaLista, void *umDado);
+
+template <typename TKey, typename TData>
+void adicionaNoInicio(ListaEncadeada<TKey, TData> *umaLista, void *umDado);
+
+template <typename TKey, typename TData>
+void adicionaNaPosicao(ListaEncadeada<TKey, TData> *umaLista, void *umDado, int umaPosicao);
+
+template <typename TKey, typename TData>
+void adicionaNoFim(ListaEncadeada<TKey, TData> *umaLista, void *umDado);
+
+template <typename TKey, typename TData>
+void *retiraDoInicio(ListaEncadeada<TKey, TData> *umaLista);
+
+template <typename TKey, typename TData>
+void *retiraDaPosicao(ListaEncadeada<TKey, TData> *umaLista, int umaPosicao);
+
+template <typename TKey, typename TData>
+void *retiraDoFim(ListaEncadeada<TKey, TData> *umaLista);
+
+template <typename TKey, typename TData>
+void *retiraEspecifico(ListaEncadeada<TKey, TData> *umaLista, void *umDado);
 
 #endif /* LISTAENCADEADA_HPP */

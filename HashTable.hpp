@@ -1,10 +1,13 @@
 #ifndef HASHTABLE_HPP
 #define HASHTABLE_HPP
-
+#include <cmath>
 #include <exception>
+#include <string>
 
 #include "Elemento.hpp"
 #include "ListaEncadeada.hpp"
+
+using namespace std;
 
 class impossivel_criar_tabela_exception : public std::exception
 {
@@ -13,20 +16,21 @@ class impossivel_criar_tabela_exception : public std::exception
         return "Não foi possivel inicializar a Tabela";
     }
 };
-
-typedef struct
+template <typename TKey, typename TData>
+struct HashTable
 {
     int _tamanho;
-    Elemento **_itens;
-} HashTable;
-
-HashTable *inicializaHashTable(int tamanho);
-void destroiHashTable(HashTable *tabela);
+    Elemento<TKey, TData> **_itens;
+};
 template <typename TKey, typename TData>
-void adicionarNaHashTable(HashTable *tabela, TKey chave, TData valor);
+void inicializaHashTable(HashTable<TKey, TData> *tabela, int tamanho);
 template <typename TKey, typename TData>
-void removerDaHashTable(HashTable *tabela, TKey chave, TData valor);
+void destroiHashTable(HashTable<TKey, TData> *tabela);
 template <typename TKey, typename TData>
-ListaEncadeada *buscarNaHashTable(HashTable *tabela, TKey chave, TData valor);
+void adicionarNaHashTable(HashTable<TKey, TData> *tabela, TKey chave, TData valor);
+template <typename TKey, typename TData>
+void removerDaHashTable(HashTable<TKey, TData> *tabela, TKey chave);
+template <typename TKey, typename TData>
+Elemento<TKey, TData> *buscarNaHashTable(HashTable<TKey, TData> *tabela, TKey chave);
 
 #endif /* HASHTABLE_HPP */

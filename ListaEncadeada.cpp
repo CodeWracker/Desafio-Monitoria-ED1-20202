@@ -1,16 +1,16 @@
 #include "ListaEncadeada.hpp"
 #include <stdlib.h>
-
-ListaEncadeada *iniciaListaEncadeada()
+template <typename TKey, typename TData>
+ListaEncadeada<TKey, TData> *iniciaListaEncadeada()
 {
-    ListaEncadeada *lista = (ListaEncadeada *)calloc(1, sizeof(ListaEncadeada));
+    ListaEncadeada<TKey, TData> *lista = (ListaEncadeada<TKey, TData> *)calloc(1, sizeof(ListaEncadeada<TKey, TData>));
     return lista;
 }
-
-void destroiListaEncadeada(ListaEncadeada *umaLista)
+template <typename TKey, typename TData>
+void destroiListaEncadeada(ListaEncadeada<TKey, TData> *umaLista)
 {
-    Elemento *atual = nullptr;
-    Elemento *proximo = nullptr;
+    Elemento<TKey, TData> *atual = nullptr;
+    Elemento<TKey, TData> *proximo = nullptr;
 
     if (!listaVazia(umaLista))
     {
@@ -28,8 +28,8 @@ void destroiListaEncadeada(ListaEncadeada *umaLista)
 
     free(umaLista);
 }
-
-bool listaVazia(ListaEncadeada *umaLista)
+template <typename TKey, typename TData>
+bool listaVazia(ListaEncadeada<TKey, TData> *umaLista)
 {
     if (umaLista != nullptr && umaLista->_quantidade != 0)
     {
@@ -38,10 +38,10 @@ bool listaVazia(ListaEncadeada *umaLista)
     else
         return true;
 }
-
-void adicionaNoInicio(ListaEncadeada *umaLista, void *umDado)
+template <typename TKey, typename TData>
+void adicionaNoInicio(ListaEncadeada<TKey, TData> *umaLista, void *umDado)
 {
-    Elemento *novo = (Elemento *)calloc(1, sizeof(Elemento));
+    Elemento<TKey, TData> *novo = (Elemento<TKey, TData> *)calloc(1, sizeof(Elemento<TKey, TData>));
 
     novo->_proximo = umaLista->_primeiro;
     novo->_dado = umDado;
@@ -50,9 +50,10 @@ void adicionaNoInicio(ListaEncadeada *umaLista, void *umDado)
     umaLista->_quantidade++;
 }
 
-Elemento *getN(ListaEncadeada *umaLista, int posicao)
+template <typename TKey, typename TData>
+Elemento<TKey, TData> *getN(ListaEncadeada<TKey, TData> *umaLista, int posicao)
 {
-    Elemento *ret = umaLista->_primeiro;
+    Elemento<TKey, TData> *ret = umaLista->_primeiro;
 
     for (int i = 0; i < posicao - 1; i++)
     {
@@ -61,8 +62,8 @@ Elemento *getN(ListaEncadeada *umaLista, int posicao)
 
     return ret;
 }
-
-void adicionaNaPosicao(ListaEncadeada *umaLista, void *umDado, int umaPosicao)
+template <typename TKey, typename TData>
+void adicionaNaPosicao(ListaEncadeada<TKey, TData> *umaLista, void *umDado, int umaPosicao)
 {
 
     //EXCECAO
@@ -77,8 +78,8 @@ void adicionaNaPosicao(ListaEncadeada *umaLista, void *umDado, int umaPosicao)
     }
     else
     {
-        Elemento *novo = (Elemento *)calloc(1, sizeof(Elemento));
-        Elemento *anterior = getN(umaLista, umaPosicao - 1);
+        Elemento<TKey, TData> *novo = (Elemento<TKey, TData> *)calloc(1, sizeof(Elemento<TKey, TData>));
+        Elemento<TKey, TData> *anterior = getN(umaLista, umaPosicao - 1);
 
         novo->_proximo = anterior->_proximo;
         novo->_dado = umDado;
@@ -87,13 +88,13 @@ void adicionaNaPosicao(ListaEncadeada *umaLista, void *umDado, int umaPosicao)
         umaLista->_quantidade++;
     }
 }
-
-void adicionaNoFim(ListaEncadeada *umaLista, void *umDado)
+template <typename TKey, typename TData>
+void adicionaNoFim(ListaEncadeada<TKey, TData> *umaLista, void *umDado)
 {
     adicionaNaPosicao(umaLista, umDado, umaLista->_quantidade + 1);
 }
-
-int posicao(ListaEncadeada *umaLista, void *umDado)
+template <typename TKey, typename TData>
+int posicao(ListaEncadeada<TKey, TData> *umaLista, void *umDado)
 {
 
     if (listaVazia(umaLista))
@@ -101,7 +102,7 @@ int posicao(ListaEncadeada *umaLista, void *umDado)
         return -1;
     }
 
-    Elemento *elemento = umaLista->_primeiro;
+    Elemento<TKey, TData> *elemento = umaLista->_primeiro;
 
     if (elemento->_dado == umDado)
     {
@@ -120,8 +121,8 @@ int posicao(ListaEncadeada *umaLista, void *umDado)
 
     return -1;
 }
-
-bool contem(ListaEncadeada *umaLista, void *umDado)
+template <typename TKey, typename TData>
+bool contem(ListaEncadeada<TKey, TData> *umaLista, void *umDado)
 {
     if (listaVazia(umaLista))
     {
@@ -129,7 +130,7 @@ bool contem(ListaEncadeada *umaLista, void *umDado)
     }
     else
     {
-        Elemento *elemento = umaLista->_primeiro;
+        Elemento<TKey, TData> *elemento = umaLista->_primeiro;
 
         for (int i = 1; i <= umaLista->_quantidade; i++)
         {
@@ -150,13 +151,13 @@ bool contem(ListaEncadeada *umaLista, void *umDado)
         return false;
     }
 }
-
-void *retiraDoInicio(ListaEncadeada *umaLista)
+template <typename TKey, typename TData>
+void *retiraDoInicio(ListaEncadeada<TKey, TData> *umaLista)
 {
     if (umaLista == nullptr || umaLista->_quantidade == 0)
         throw lista_encadeada_vazia_exception();
 
-    Elemento *elemento;
+    Elemento<TKey, TData> *elemento;
     void *dado;
 
     elemento = umaLista->_primeiro;
@@ -168,8 +169,8 @@ void *retiraDoInicio(ListaEncadeada *umaLista)
 
     return dado;
 }
-
-void *retiraDaPosicao(ListaEncadeada *umaLista, int umaPosicao)
+template <typename TKey, typename TData>
+void *retiraDaPosicao(ListaEncadeada<TKey, TData> *umaLista, int umaPosicao)
 {
     if (umaLista == nullptr || umaLista->_quantidade == 0)
     {
@@ -187,8 +188,8 @@ void *retiraDaPosicao(ListaEncadeada *umaLista, int umaPosicao)
     }
     else
     {
-        Elemento *sai;
-        Elemento *anterior = getN(umaLista, umaPosicao - 1);
+        Elemento<TKey, TData> *sai;
+        Elemento<TKey, TData> *anterior = getN(umaLista, umaPosicao - 1);
         void *dado;
 
         sai = anterior->_proximo;

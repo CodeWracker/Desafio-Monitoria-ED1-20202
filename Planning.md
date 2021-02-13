@@ -1,5 +1,7 @@
 # Definições
 
+Não vai poder usar 2 tipos de valores ou chaves ao mesmo tempo
+
 ## Hash Function
 ``` h(k) = k mod m```
 

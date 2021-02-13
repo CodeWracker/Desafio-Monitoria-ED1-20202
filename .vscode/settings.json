@@ -1,5 +1,15 @@
 {
     "files.associations": {
-        "exception": "cpp"
+        "exception": "cpp",
+        "vector": "cpp",
+        "functional": "cpp",
+        "iosfwd": "cpp",
+        "new": "cpp",
+        "ostream": "cpp",
+        "sstream": "cpp",
+        "stdexcept": "cpp",
+        "tuple": "cpp",
+        "type_traits": "cpp",
+        "utility": "cpp"
     }
 }

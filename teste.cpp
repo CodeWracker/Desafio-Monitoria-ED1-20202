@@ -5,21 +5,17 @@
 
 TEST(HashTableTest, TesteinicializaHashTable)
 {
-    /*
-        Testa se está criando certo a Tabela
-        - Inicia ela vazia com tamanho 7
-        - Verifica se ta tudo vazio mesmo
-        - Inicia outra vazia com tamanho 17
-        - Verifica se ta tudo vazio mesmo
-    */
-    HashTable *tabela = inicializaHashTable(7);
+
+    HashTable<int, int> *tabela;
+    inicializaHashTable(tabela, 7);
     ASSERT_EQ(tabela->_tamanho, 7);
     for (int i = 0; i < 7; i++)
     {
         ASSERT_EQ(tabela->_itens[i], nullptr) << "O item na posição " << i << " não é nulo";
     }
     destroiHashTable(tabela);
-    HashTable *table = inicializaHashTable(17);
+    HashTable<string, string> *table;
+    inicializaHashTable(table, 17);
     for (int i = 0; i < 17; i++)
     {
         ASSERT_EQ(table->_itens[i], nullptr) << "O item na posição " << i << " não é nulo";
@@ -39,7 +35,20 @@ TEST(HashTableTest, TesteInsereSemColizao)
         - insere um elemento com char na chave e no valor
         - verifica se os elementos estão na lista e se não houve colisão
     */
-    ASSERT_EQ(1, 1);
+    HashTable<string, string> *tabela;
+    //inicializaHashTable(tabela, 7);
+    string c1 = "chave1";
+    string val1 = "valor1";
+
+    int c2 = 1;
+    int val2 = 12;
+    double c3 = 2;
+    double val3 = 123;
+    float c4 = 4.12;
+    float val4 = 1.98;
+    char c5 = ''; //isso aqui é o que da 5 na ASCII
+    char val5 = 'p';
+    //adicionarNaHashTable()
 }
 TEST(HashTableTest, TesteInsereComColizao)
 {
