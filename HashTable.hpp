@@ -36,6 +36,7 @@
 #include <cmath>
 #include <exception>
 #include <string>
+#include <cstdlib>
 
 #include "Elemento.hpp"
 #include "ListaEncadeada.hpp"
@@ -98,7 +99,7 @@ void inicializaHashTable(HashTable<TKey, TData> *tabela, int tamanho)
     if (tabela == nullptr)
         throw impossivel_criar_tabela_exception();
     tabela->_tamanho = tamanho;
-    tabela->_itens = (ListaEncadeada<TKey, TData> **)calloc(tamanho, sizeof(ListaEncadeada<TKey, TData>));
+    tabela->_itens = new ListaEncadeada<TKey, TData> *[tamanho];
     if (tabela->_itens == nullptr)
         throw impossivel_criar_tabela_exception();
 }
