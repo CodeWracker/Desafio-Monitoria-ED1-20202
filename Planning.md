@@ -48,14 +48,16 @@ Testa se consegue Criar a tabela e inserir algum dado nela
 
 ## Teste 3 - Insere com colisão
 Testa se consegue Criar a tabela e inserir algum dado nela, causando colisões
-- Inicia a tabela vazia com tamanho 7
-- Verifica se ela esta vazia
-- insere 10 elementos
-- insere 2 elemento com string na chave e no valor
-- insere 2 elementos com int na chave e no valor
-- insere 2 elementos com double na chave e no valor
-- insere 2 elementos com float na chave e no valor
-- insere 2 elementos com char na chave e no valor
+- Inicia a tabela vazia com tamanho 3
+- insere 3 elemento com string na chave e no valor
+- Inicia a tabela vazia com tamanho 3
+- insere 3 elementos com int na chave e no valor
+- Inicia a tabela vazia com tamanho 3
+- insere 3 elementos com double na chave e no valor
+- Inicia a tabela vazia com tamanho 3
+- insere 3 elementos com float na chave e no valor
+- Inicia a tabela vazia com tamanho 3
+- insere 3 elementos com char na chave e no valor
 - Tenta inserir um valor usando A MESMA chave num que ja tem colisão(retorna um erro)
 - verifica se os elementos estão na lista e se não houve colisão (No caso, como cria uma lista encadeada, vai verificar se o primeiro é o primeiro da lista)
 - nos que deram colisão, verifica se eles estão na posição correta na lista encadeada
@@ -79,7 +81,7 @@ Testar se consegue retornar um elemento em uma tabela com colisão
 ### Teste 7 - Remover com colisõa
 
 Testa se consegue remover dados de uma lista que possui colisão
-- Cria uma lista de tamanho 7, com 12 elementos
+- Cria uma lista de tamanho 7, com 13 elementos
 - Remove o primeiro do indice 5
 - Verifica se o indice 5 continua tendo colisão (não deveria ter)
 - Verfica se o primeiro da lista de colisões do indice 1 corresponde ao esperado (antigo 2o)
@@ -115,22 +117,16 @@ Testa se consegue destruir uma lista que possui colisão
 
 pos|value| lista de colisões 
 ---|---|---
-0|46 ->| nullptr
+0|meire ->| nullptr
 1|joao| nullptr
-2|96 ->|nullptr
-3|9,22 ->| nullptr
-4|pedro ->| nullptr
-5|rodrigo ->| nullptr
-6|fuinha ->| nullptr
+2|julio ->|nullptr
+3|carol ->| nullptr
 
 ### Tabela com colisão
 
 pos|value| lista de colisões 
 ---|---|---
-0|46 ->|  nullptr
+0|meire ->|  nullptr
 1|joao ->|  rafalli -> manu -> perna
-2|96 ->|  nullptr
-3|9,22 ->|  gustavo -> Ykky
-4|pedro ->|  nullptr
-5|rodrigo ->|  vinicius
-6|fuinha ->|  nullptr
+2|julio ->|  gustavo -> Ykky
+3|carol ->|  vinicius
