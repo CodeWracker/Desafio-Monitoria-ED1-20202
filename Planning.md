@@ -103,22 +103,22 @@ Testa se consegue destruir uma lista que possui colisão
 
 pos|value| lista de colisões 
 ---|---|---
-0|46 ->| null
-1|joao| null
-2|96 ->|null
-3|9,22 ->| null
-4|pedro ->| null
-5|rodrigo ->| null
-6|fuinha ->| null
+0|46 ->| nullptr
+1|joao| nullptr
+2|96 ->|nullptr
+3|9,22 ->| nullptr
+4|pedro ->| nullptr
+5|rodrigo ->| nullptr
+6|fuinha ->| nullptr
 
 ### Tabela com colisão
 
 pos|value| lista de colisões 
 ---|---|---
-0|46 ->|  null
+0|46 ->|  nullptr
 1|joao ->|  rafalli -> manu -> perna
-2|96 ->|  null
+2|96 ->|  nullptr
 3|9,22 ->|  gustavo -> Ykky
-4|pedro ->|  null
+4|pedro ->|  nullptr
 5|rodrigo ->|  vinicius
-6|fuinha ->|  null
+6|fuinha ->|  nullptr
