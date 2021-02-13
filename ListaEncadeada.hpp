@@ -8,7 +8,7 @@
 #include <new>
 #include <stdlib.h>
 #include <string>
-
+using namespace std;
 class posicao_invalida_exception : public std::exception
 {
     virtual const char *what() const throw()
