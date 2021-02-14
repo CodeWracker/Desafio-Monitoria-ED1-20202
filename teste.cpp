@@ -201,6 +201,7 @@ TEST(HashTableTest, TesteRemoveSemColisao)
     removerDaHashTable(tabela, c3);
     busca = buscarElementoNaHashTable(tabela, c3);
     ASSERT_EQ(busca, nullptr);
+    destroiHashTable(tabela);
 }
 TEST(HashTableTest, TesteRemoveComColisao)
 {
@@ -266,88 +267,6 @@ TEST(HashTableTest, TesteRemoveComColisao)
     ASSERT_EQ(*busca->_primeiro->_proximo->_dado, val6);
 
     destroiHashTable(tabela);
-}
-TEST(HashTableTest, TesteDestroiSemColisao)
-{
-    /*
-        Testa se consegue limpar uma lista sem colisão e liberar ela
-        - Cria uma lista de tamanho 7 e toda cheia
-        - Destroi
-        - Verifica se foi destruida
-        - Cria uma lista de tamanho 11 com 8 elementos
-        - Destroi
-        - Verifica se foi destruida
-*/
-
-    HashTable<int, string> *tabela = (HashTable<int, string> *)calloc(1, sizeof(HashTable<int, string>));
-    int tam = 3;
-    inicializaHashTable(tabela, tam);
-    int c1 = 0;
-    string val1 = "meire";
-    int c2 = 1;
-    string val2 = "joao";
-    int c3 = 2;
-    string val3 = "julio";
-    adicionarNaHashTable(tabela, &c1, &val1);
-    adicionarNaHashTable(tabela, &c2, &val2);
-    adicionarNaHashTable(tabela, &c3, &val3);
-    /*int *a = (int *)calloc(1, sizeof(int));
-    cout << a << endl;
-    free(a);
-    cout << a << endl;*/
-    destroiHashTable(tabela);
-    ASSERT_EQ(tabela, nullptr);
-
-    // O teste mesmo é no valgrind, para verificar se não tem leak
-}
-TEST(HashTableTest, TesteDestroiComColisao)
-{
-    /*
-        Testa se consegue destruir uma lista que possui colisão
-        - Cria uma lista de tamanho 7 com 12 elementos
-        - Destroi
-        - Verifica se foi destruido
-    */
-    /*
-    HashTable<string, string> *tabela = (HashTable<string, string> *)calloc(1, sizeof(HashTable<string, string>));
-    int tam = 4;
-    inicializaHashTable(tabela, tam);
-    string c1 = "A";
-    string val1 = "meire";
-    string c2 = "B";
-    string val2 = "joao";
-    string c3 = "C";
-    string val3 = "julio";
-    string c4 = "D";
-    string val4 = "carol";
-    string c5 = "F";
-    string val5 = "rafaelli";
-    string c6 = "J";
-    string val6 = "manu";
-    string c7 = "O";
-    string val7 = "perna";
-    string c8 = "G";
-    string val8 = "gustavo";
-    string c9 = "K";
-    string val9 = "Ykky";
-    string c10 = "H";
-    string val10 = "vinicius";
-
-    adicionarNaHashTable(tabela, &c1, &val1);
-    adicionarNaHashTable(tabela, &c2, &val2);
-    adicionarNaHashTable(tabela, &c3, &val3);
-    adicionarNaHashTable(tabela, &c4, &val4);
-    adicionarNaHashTable(tabela, &c5, &val5);
-    adicionarNaHashTable(tabela, &c6, &val6);
-    adicionarNaHashTable(tabela, &c7, &val7);
-    adicionarNaHashTable(tabela, &c8, &val8);
-    adicionarNaHashTable(tabela, &c9, &val9);
-    adicionarNaHashTable(tabela, &c10, &val10);
-
-    destroiHashTable(tabela);
-    ASSERT_EQ(tabela, nullptr);
-*/
-    // O teste mesmo é no valgrind, para verificar se não tem leak
 }
 
 int main(int argc, char **argv)

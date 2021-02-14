@@ -146,13 +146,8 @@ void destroiHashTable(HashTable<TKey, TData> *tabela)
         ListaEncadeada<TKey, TData> *item = tabela->_itens[i];
         destroiListaEncadeada(item);
     }
-
+    free(tabela->_itens);
     free(tabela);
-    if (tabela == nullptr)
-        cout << "nullptr" << endl;
-    if (tabela == NULL)
-        cout << "NULL" << endl;
-    //cout << tabela << endl;
 }
 
 template <typename TKey, typename TData>
