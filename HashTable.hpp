@@ -146,7 +146,13 @@ void destroiHashTable(HashTable<TKey, TData> *tabela)
         ListaEncadeada<TKey, TData> *item = tabela->_itens[i];
         destroiListaEncadeada(item);
     }
+
     free(tabela);
+    if (tabela == nullptr)
+        cout << "nullptr" << endl;
+    if (tabela == NULL)
+        cout << "NULL" << endl;
+    //cout << tabela << endl;
 }
 
 template <typename TKey, typename TData>
@@ -183,9 +189,11 @@ Elemento<TKey, TData> *buscarElementoNaHashTable(HashTable<TKey, TData> *tabela,
 template <typename TKey, typename TData>
 ListaEncadeada<TKey, TData> *buscarListaNaHashTable(HashTable<TKey, TData> *tabela, TKey chave)
 {
-    ListaEncadeada<TKey, TData> *busca;
-
-    return busca;
+    if (tabela == nullptr)
+        throw adicionar_em_tabela_nula_exception();
+    int pos = hashFunction(chave, tabela->_tamanho);
+    //cout << pos << endl;
+    return tabela->_itens[pos];
 }
 
 #endif /* HASHTABLE_HPP */

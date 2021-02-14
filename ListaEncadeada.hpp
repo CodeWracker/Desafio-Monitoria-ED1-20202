@@ -34,7 +34,7 @@ struct ListaEncadeada
 template <typename TKey, typename TData>
 ListaEncadeada<TKey, TData> *iniciaListaEncadeada()
 {
-    ListaEncadeada<TKey, TData> *lista = new ListaEncadeada<TKey, TData>;
+    ListaEncadeada<TKey, TData> *lista = (ListaEncadeada<TKey, TData> *)calloc(1, sizeof(ListaEncadeada<TKey, TData>));
     return lista;
 }
 template <typename TKey, typename TData>
@@ -72,7 +72,7 @@ bool listaVazia(ListaEncadeada<TKey, TData> *umaLista)
 template <typename TKey, typename TData>
 void adicionaNoInicio(ListaEncadeada<TKey, TData> *umaLista, TData *umDado, TKey *chave)
 {
-    Elemento<TKey, TData> *novo = new Elemento<TKey, TData>;
+    Elemento<TKey, TData> *novo = (Elemento<TKey, TData> *)calloc(1, sizeof(Elemento<TKey, TData>));
 
     novo->_proximo = umaLista->_primeiro;
     novo->_dado = umDado;
@@ -109,7 +109,7 @@ void adicionaNaPosicao(ListaEncadeada<TKey, TData> *umaLista, TData *umDado, TKe
     }
     else
     {
-        Elemento<TKey, TData> *novo = new Elemento<TKey, TData>;
+        Elemento<TKey, TData> *novo = (Elemento<TKey, TData> *)calloc(1, sizeof(Elemento<TKey, TData>));
         Elemento<TKey, TData> *anterior = getN(umaLista, umaPosicao - 1);
 
         novo->_proximo = anterior->_proximo;
@@ -214,7 +214,7 @@ void removerEspecifico(ListaEncadeada<TKey, TData> *umaLista, TKey chave)
     bool achou = false;
     for (int i = 0; i < umaLista->_quantidade; i++)
     {
-        cout << *sai->_dado << endl;
+        //cout << *sai->_dado << endl;
         if (*sai->_chave == chave)
         {
             achou = true;

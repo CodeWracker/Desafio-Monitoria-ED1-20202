@@ -213,29 +213,29 @@ TEST(HashTableTest, TesteRemoveComColisao)
     2|julio ->|  gustavo -> Ykky
     3|carol ->|  vinicius
     */
-    /*
-    HashTable<string, string> *tabela =  = (HashTable<string, string> *)calloc(1, sizeof(HashTable<string, string>));
+
+    HashTable<string, string> *tabela = (HashTable<string, string> *)calloc(1, sizeof(HashTable<string, string>));
     int tam = 4;
     inicializaHashTable(tabela, tam);
-    string c1 = "A";
+    string c1 = "D"; //0
     string val1 = "meire";
-    string c2 = "B";
+    string c2 = "A"; //1
     string val2 = "joao";
-    string c3 = "C";
+    string c3 = "B"; //2
     string val3 = "julio";
-    string c4 = "D";
+    string c4 = "C"; //3
     string val4 = "carol";
-    string c5 = "F";
+    string c5 = "E"; //1
     string val5 = "rafaelli";
-    string c6 = "J";
+    string c6 = "I"; //1
     string val6 = "manu";
-    string c7 = "O";
+    string c7 = "M"; //1
     string val7 = "perna";
-    string c8 = "G";
+    string c8 = "F"; //2
     string val8 = "gustavo";
-    string c9 = "K";
+    string c9 = "J"; //2
     string val9 = "Ykky";
-    string c10 = "H";
+    string c10 = "G"; //3
     string val10 = "vinicius";
 
     adicionarNaHashTable(tabela, &c1, &val1);
@@ -266,7 +266,6 @@ TEST(HashTableTest, TesteRemoveComColisao)
     ASSERT_EQ(*busca->_primeiro->_proximo->_dado, val6);
 
     destroiHashTable(tabela);
-    */
 }
 TEST(HashTableTest, TesteDestroiSemColisao)
 {
@@ -279,7 +278,7 @@ TEST(HashTableTest, TesteDestroiSemColisao)
         - Destroi
         - Verifica se foi destruida
 */
-    /*
+
     HashTable<int, string> *tabela = (HashTable<int, string> *)calloc(1, sizeof(HashTable<int, string>));
     int tam = 3;
     inicializaHashTable(tabela, tam);
@@ -292,10 +291,13 @@ TEST(HashTableTest, TesteDestroiSemColisao)
     adicionarNaHashTable(tabela, &c1, &val1);
     adicionarNaHashTable(tabela, &c2, &val2);
     adicionarNaHashTable(tabela, &c3, &val3);
-
+    int *a = (int *)calloc(1, sizeof(int));
+    /*cout << a << endl;
+    free(a);
+    cout << a << endl;*/
     destroiHashTable(tabela);
     ASSERT_EQ(tabela, nullptr);
-    */
+
     // O teste mesmo é no valgrind, para verificar se não tem leak
 }
 TEST(HashTableTest, TesteDestroiComColisao)
@@ -344,7 +346,7 @@ TEST(HashTableTest, TesteDestroiComColisao)
 
     destroiHashTable(tabela);
     ASSERT_EQ(tabela, nullptr);
-    */
+*/
     // O teste mesmo é no valgrind, para verificar se não tem leak
 }
 
