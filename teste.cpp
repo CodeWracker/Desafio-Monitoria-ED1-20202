@@ -37,44 +37,36 @@ TEST(HashTableTest, TesteInsereSemColizao)
     string val1 = "valor1";
     adicionarNaHashTable(tabela1, &c1, &val1);
     ASSERT_EQ(*tabela1->_itens[0]->_primeiro->_dado, val1);
-    /*destroiHashTable(tabela1);
-    
+    destroiHashTable(tabela1);
+
     HashTable<int, int> *tabela2 = (HashTable<int, int> *)calloc(1, sizeof(HashTable<int, int>));
     inicializaHashTable(tabela2, tam);
     int c2 = 1;
     int val2 = 12;
     adicionarNaHashTable(tabela2, &c2, &val2);
-    ASSERT_EQ(*tabela1->_itens[1]->_primeiro->_dado, val2);
+    Elemento<int, int> *a = tabela2->_itens[1]->_primeiro;
+    ASSERT_EQ(*a->_dado, val2);
     destroiHashTable(tabela2);
 
-    HashTable<double, double> *tabela3 =(HashTable<double, double> *)calloc(1, sizeof(HashTable<double, double>));
+    HashTable<float, float> *tabela3 = (HashTable<float, float> *)calloc(1, sizeof(HashTable<float, float>));
     inicializaHashTable(tabela3, tam);
-    double c3 = 2;
-    double val3 = 123;
+    float c3 = 4.12;
+    float val3 = 1.98;
     adicionarNaHashTable(tabela3, &c3, &val3);
-    ASSERT_EQ(*tabela1->_itens[0]->_primeiro->_dado, val3);
+    ASSERT_EQ(*tabela3->_itens[0]->_primeiro->_dado, val3);
     destroiHashTable(tabela3);
 
-    HashTable<float, float> *tabela4 =(HashTable<float, float> *)calloc(1, sizeof(HashTable<float, float>));
+    HashTable<char, char> *tabela4 = (HashTable<char, char> *)calloc(1, sizeof(HashTable<char, char>));
     inicializaHashTable(tabela4, tam);
-    float c4 = 4.12;
-    float val4 = 1.98;
+    char c4 = ''; //isso aqui é o que da 5 na ASCII
+    char val4 = 'p';
     adicionarNaHashTable(tabela4, &c4, &val4);
-    ASSERT_EQ(*tabela1->_itens[0]->_primeiro->_dado, val4);
+    ASSERT_EQ(*tabela4->_itens[1]->_primeiro->_dado, val4);
     destroiHashTable(tabela4);
-
-    HashTable<char, char> *tabela5 =(HashTable<char, char> *)calloc(1, sizeof(HashTable<char, char>));
-    inicializaHashTable(tabela5, tam);
-    char c5 = ''; //isso aqui é o que da 5 na ASCII
-    char val5 = 'p';
-    adicionarNaHashTable(tabela5, &c5, &val5);
-    ASSERT_EQ(*tabela1->_itens[1]->_primeiro->_dado, val1);
-    destroiHashTable(tabela5);
-    */
 }
 TEST(HashTableTest, TesteInsereComColizao)
 {
-    /*
+
     HashTable<string, string> *tabela1 = (HashTable<string, string> *)calloc(1, sizeof(HashTable<string, string>));
     int tam = 2;
     inicializaHashTable(tabela1, tam);
@@ -87,18 +79,21 @@ TEST(HashTableTest, TesteInsereComColizao)
     adicionarNaHashTable(tabela1, &c1, &val1);
     adicionarNaHashTable(tabela1, &c2, &val2);
     adicionarNaHashTable(tabela1, &c3, &val3);
-    ASSERT_EQ(*tabela1->_itens[0]->_primeiro->_dado, val1);
-    ASSERT_EQ(*tabela1->_itens[1]->_primeiro->_dado, val2);
-    ASSERT_EQ(*tabela1->_itens[0]->_primeiro->_proximo->_dado, val2);
+    /*int a = c1[0];
+    cout << a << endl;
+    cout << *tabela1->_itens[0]->_primeiro->_dado << endl;*/
+    ASSERT_EQ(*tabela1->_itens[0]->_primeiro->_dado, val2);
+
+    ASSERT_EQ(*tabela1->_itens[1]->_primeiro->_dado, val1);
+
+    ASSERT_EQ(*tabela1->_itens[1]->_primeiro->_proximo->_dado, val3);
 
     EXPECT_THROW(adicionarNaHashTable(tabela1, &c2, &val2), chave_igual_exception);
     destroiHashTable(tabela1);
-
-    */
 }
 TEST(HashTableTest, TesteBuscaSemColisao)
 {
-    /*
+
     HashTable<int, string> *tabela = (HashTable<int, string> *)calloc(1, sizeof(HashTable<int, string>));
     int tam = 3;
     inicializaHashTable(tabela, tam);
@@ -122,8 +117,10 @@ TEST(HashTableTest, TesteBuscaSemColisao)
     busca = buscarElementoNaHashTable(tabela, c3);
     ASSERT_EQ(*busca->_dado, val3);
 
+    busca = buscarElementoNaHashTable(tabela, 6);
+    ASSERT_EQ(busca, nullptr);
+
     destroiHashTable(tabela);
-    */
 }
 TEST(HashTableTest, TesteBuscaComColisao)
 {
@@ -135,7 +132,7 @@ TEST(HashTableTest, TesteBuscaComColisao)
     2|julio ->|  gustavo -> Ykky
     3|carol ->|  vinicius
     */
-    /*
+
     HashTable<string, string> *tabela = (HashTable<string, string> *)calloc(1, sizeof(HashTable<string, string>));
     int tam = 4;
     inicializaHashTable(tabela, tam);
@@ -182,11 +179,10 @@ TEST(HashTableTest, TesteBuscaComColisao)
     ASSERT_EQ(*busca->_dado, val6);
 
     destroiHashTable(tabela);
-    */
 }
 TEST(HashTableTest, TesteRemoveSemColisao)
 {
-    /*
+
     HashTable<int, string> *tabela = (HashTable<int, string> *)calloc(1, sizeof(HashTable<int, string>));
     int tam = 3;
     inicializaHashTable(tabela, tam);
@@ -202,11 +198,9 @@ TEST(HashTableTest, TesteRemoveSemColisao)
     Elemento<int, string> *busca;
     busca = buscarElementoNaHashTable(tabela, c3);
     ASSERT_EQ(*busca->_dado, val3);
-
     removerDaHashTable(tabela, c3);
     busca = buscarElementoNaHashTable(tabela, c3);
     ASSERT_EQ(busca, nullptr);
-    */
 }
 TEST(HashTableTest, TesteRemoveComColisao)
 {

@@ -1,38 +1,7 @@
 #ifndef HASHTABLE_HPP
 #define HASHTABLE_HPP
-
-#define typename(x) _Generic((x), /* Get the name of a type */         \
-                                                                       \
-                             _Bool                                     \
-                             : "_Bool", unsigned char                  \
-                             : "unsigned char",                        \
-                               char                                    \
-                             : "char", signed char                     \
-                             : "signed char",                          \
-                               short int                               \
-                             : "short int", unsigned short int         \
-                             : "unsigned short int",                   \
-                               int                                     \
-                             : "int", unsigned int                     \
-                             : "unsigned int",                         \
-                               long int                                \
-                             : "long int", unsigned long int           \
-                             : "unsigned long int",                    \
-                               long long int                           \
-                             : "long long int", unsigned long long int \
-                             : "unsigned long long int",               \
-                               float                                   \
-                             : "float", double                         \
-                             : "double",                               \
-                               long double                             \
-                             : "long double", char *                   \
-                             : "pointer to char",                      \
-                               void *                                  \
-                             : "pointer to void", int *                \
-                             : "pointer to int",                       \
-                               default                                 \
-                             : "other")
-
+#include <stddef.h>
+#include <stdint.h>
 #include <cmath>
 #include <exception>
 #include <string>
@@ -65,6 +34,15 @@ class chave_igual_exception : public std::exception
         return "Não é possivel adicionar com chaves repetidas";
     }
 };
+
+class chave_invalida_exception : public std::exception
+{
+    virtual const char *what() const throw()
+    {
+        return "Não foi possivel encontrar a chave solicitada";
+    }
+};
+
 template <typename TKey, typename TData>
 struct HashTable
 {
@@ -73,23 +51,47 @@ struct HashTable
 };
 int stringValue(string str)
 {
-    int val;
+    int val = 0;
+    char aux;
+    //cout << "val = " << val << endl;
     for (int i = 0; i < str.length(); i++)
-        val = val + i * str[i];
+    {
+        aux = str[i];
+        val = val + (i + str.length()) * aux;
+        //cout << "val = " << val << endl;
+    }
+
     return val;
 }
 
-template <typename T>
-int hashFunction(T chave, int tam)
+int hashFunction(int chave, int tam)
 {
-    int k;
-    /*if (typeof(chave) == typeof(string))
-        k = stringValue(chave);
-    if (typeof(chave) == typeof(char))
-        k = chave[0];
-    else
-        k = floor(chave[0]);
-    k = k % tam;*/
+    int k = chave;
+    k = k % tam;
+
+    return k;
+}
+
+int hashFunction(char chave, int tam)
+{
+    int k = chave;
+    k = k % tam;
+    return k;
+}
+
+int hashFunction(string chave, int tam)
+{
+    int k = stringValue(chave);
+    //cout << "string value = " << k << endl;
+    k = k % tam;
+    //cout << "k = " << k << endl;
+    return k;
+}
+
+int hashFunction(float chave, int tam)
+{
+    int k = floor(chave);
+    k = k % tam;
     return k;
 }
 template <typename TKey, typename TData>
@@ -99,17 +101,42 @@ void inicializaHashTable(HashTable<TKey, TData> *tabela, int tamanho)
     if (tabela == nullptr)
         throw impossivel_criar_tabela_exception();
     tabela->_tamanho = tamanho;
-    tabela->_itens = new ListaEncadeada<TKey, TData> *[tamanho];
+    tabela->_itens = (ListaEncadeada<TKey, TData> **)calloc(tamanho, sizeof(ListaEncadeada<TKey, TData> *));
     if (tabela->_itens == nullptr)
         throw impossivel_criar_tabela_exception();
+    for (int i = 0; i < tamanho; i++)
+    {
+        tabela->_itens[i] = iniciaListaEncadeada<TKey, TData>();
+        tabela->_itens[i]->_primeiro = nullptr;
+    }
 }
 template <typename TKey, typename TData>
 void adicionarNaHashTable(HashTable<TKey, TData> *tabela, TKey *chave, TData *valor)
 {
-    int pos = hashFunction(*chave, tabela->_tamanho);
     if (tabela == nullptr)
         throw adicionar_em_tabela_nula_exception();
-    adicionaNoFim(tabela->_itens[pos], valor);
+    int pos = hashFunction(*chave, tabela->_tamanho);
+    bool er = false;
+    if (tabela->_itens[pos]->_primeiro != nullptr)
+    {
+        ListaEncadeada<TKey, TData> *lista = tabela->_itens[pos];
+        Elemento<TKey, TData> *item = lista->_primeiro;
+        for (int i = 0; i < lista->_quantidade; i++)
+        {
+            if (*item->_chave == *chave)
+            {
+                er = true;
+                break;
+            }
+            if (item->_proximo != nullptr)
+                item = item->_proximo;
+        }
+    }
+
+    if (!er)
+        adicionaNoFim(tabela->_itens[pos], valor, chave);
+    else
+        throw chave_igual_exception();
 }
 template <typename TKey, typename TData>
 void destroiHashTable(HashTable<TKey, TData> *tabela)
@@ -123,13 +150,34 @@ void destroiHashTable(HashTable<TKey, TData> *tabela)
 }
 
 template <typename TKey, typename TData>
-void removerDaHashTable(HashTable<TKey, TData> *tabela, TKey chave) {}
+void removerDaHashTable(HashTable<TKey, TData> *tabela, TKey chave)
+{
+    if (tabela == nullptr)
+        throw adicionar_em_tabela_nula_exception();
+    int pos = hashFunction(chave, tabela->_tamanho);
+    removerEspecifico(tabela->_itens[pos], chave);
+}
 template <typename TKey, typename TData>
 Elemento<TKey, TData> *buscarElementoNaHashTable(HashTable<TKey, TData> *tabela, TKey chave)
 {
-    Elemento<TKey, TData> *busca;
-
-    return busca;
+    if (tabela == nullptr)
+        throw adicionar_em_tabela_nula_exception();
+    int pos = hashFunction(chave, tabela->_tamanho);
+    if (tabela->_itens[pos]->_primeiro != nullptr)
+    {
+        ListaEncadeada<TKey, TData> *lista = tabela->_itens[pos];
+        Elemento<TKey, TData> *item = lista->_primeiro;
+        for (int i = 0; i < lista->_quantidade; i++)
+        {
+            if (*item->_chave == chave)
+            {
+                return item;
+            }
+            if (item->_proximo != nullptr)
+                item = item->_proximo;
+        }
+    }
+    return nullptr;
 }
 
 template <typename TKey, typename TData>
