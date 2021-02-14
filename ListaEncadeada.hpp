@@ -97,7 +97,6 @@ template <typename TKey, typename TData>
 void adicionaNaPosicao(ListaEncadeada<TKey, TData> *umaLista, TData *umDado, TKey *chave, int umaPosicao)
 {
 
-    //EXCECAO
     if (umaPosicao < 1 || umaPosicao > umaLista->_quantidade + 1)
     {
         throw posicao_invalida_exception();
@@ -214,14 +213,11 @@ void removerEspecifico(ListaEncadeada<TKey, TData> *umaLista, TKey chave)
     bool achou = false;
     for (int i = 0; i < umaLista->_quantidade; i++)
     {
-        //cout << *sai->_dado << endl;
         if (*sai->_chave == chave)
         {
             achou = true;
-            //cout << "achei" << endl;
             break;
         }
-        //cout << "isso é pra aparecer uma vez" << endl;
         anterior = sai;
         if (sai->_proximo == nullptr)
             break;
@@ -230,7 +226,7 @@ void removerEspecifico(ListaEncadeada<TKey, TData> *umaLista, TKey chave)
     }
     if (!achou)
         throw posicao_invalida_exception();
-    //cout << "anterior: " << *anterior->_dado << " // sai: " << *sai->_dado << endl;
+
     if (umaLista->_primeiro == sai)
         retiraDoInicio(umaLista);
     else

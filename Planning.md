@@ -13,11 +13,12 @@ k: chave
 
 ### strings
 - ASCII com pesos, para evitar anagramas
+    for(i =0...n) ch = ch + (i*str.len) str[i]
 
 ### char
 - Conversão em ASCII
 
-### int e double
+### int 
 - só colocar na função
 
 # float
@@ -40,7 +41,6 @@ Testa se consegue Criar a tabela e inserir algum dado nela
 - Verifica se ela esta vazia
 - insere um elemento com string na chave e no valor
 - insere um elemento com int na chave e no valor
-- insere um elemento com double na chave e no valor
 - insere um elemento com float na chave e no valor
 - insere um elemento com char na chave e no valor
 - verifica se os elementos estão na lista e se não houve colisão
@@ -50,64 +50,47 @@ Testa se consegue Criar a tabela e inserir algum dado nela
 Testa se consegue Criar a tabela e inserir algum dado nela, causando colisões
 - Inicia a tabela vazia com tamanho 3
 - insere 3 elemento com string na chave e no valor
-- Inicia a tabela vazia com tamanho 3
-- insere 3 elementos com int na chave e no valor
-- Inicia a tabela vazia com tamanho 3
-- insere 3 elementos com double na chave e no valor
-- Inicia a tabela vazia com tamanho 3
-- insere 3 elementos com float na chave e no valor
-- Inicia a tabela vazia com tamanho 3
-- insere 3 elementos com char na chave e no valor
+- Verifica a posição de cada um
 - Tenta inserir um valor usando A MESMA chave num que ja tem colisão(retorna um erro)
-- verifica se os elementos estão na lista e se não houve colisão (No caso, como cria uma lista encadeada, vai verificar se o primeiro é o primeiro da lista)
-- nos que deram colisão, verifica se eles estão na posição correta na lista encadeada
+
 
 
 ### Teste 4 - Buscar em tabela sem colisão
 Testar se consegue retornar um elemento em uma tabela sem colisão
 Ele nusca a partir do hash da chave e na lista salva tb a chave
+- Cria uma tabela de tamanho 3
+- insere 3 elementos com chaves que nao colidem
+- verifica se a busca consegue retornar cada elemento
 
 ### Teste 5 - Buscar em tabela com colisão
 Testar se consegue retornar um elemento em uma tabela com colisão
+- Cria a tabela com colisão desrita no fim
+- verifica se consegue retornar os elementos em diferentes posições das listas encadeadas
 
 ### Teste 6 - Remover sem colisão
 Testa se consegue remover dados de uma lista que não possui nenhuma colisão
 - Cria uma lista de tamanho 3, com 3 elementos
-PARA CADA ITEM QUE FOI INSERIDO
 - Remove um e verifica se aquela posição agora é nula 
-- Cria uma lista de tamanho 3 com 3 elementos
 - tenta remover de um elemento nulo (deve dar um throw error)
 
 ### Teste 7 - Remover com colisõa
 
 Testa se consegue remover dados de uma lista que possui colisão
 - Cria uma lista de tamanho 4, com 10 elementos
-- Remove o primeiro do indice 4
-- Verifica se o indice 4 continua tendo colisão (não deveria ter)
+- Remove o primeiro da 4a linha
+- Verifica se a linha 4 continua tendo colisão (não deveria ter)
 - Verfica se o primeiro da lista de colisões do indice 4 corresponde ao esperado (antigo 2o)
-- Remove a ultima colisão do indice 3
+
+- Remove a ultima colisão da 3a linha
 - Verifia se o indice 3 segue tendo colisão
 - Verifica o tamanho da colisão agora
 - Verifica se os valores da lista de posição está correta
+
 - Remove o 2 segundo item da lista de colisões do indice 1
 - Verifica se segue tendo colisão
-- Verifica o tamanho da lista
 - Verifica se os valores da lista estão corretos
 
-### Teste 8 - Destruir sem colisão
-Testa se consegue limpar uma lista sem colisão e liberar ela
-- Cria uma lista de tamanho 7 e toda cheia
-- Destroi
-- Verifica se foi destruida
-- Cria uma lista de tamanho 11 com 8 elementos
-- Destroi
-- Verifica se foi destruida
 
-### Teste 9 - Destruir com colisão
-Testa se consegue destruir uma lista que possui colisão
-- Cria uma lista de tamanho 7 com 12 elementos
-- Destroi
-- Verifica se foi destruido
 
 
 ## Tabelas usadas nos testes

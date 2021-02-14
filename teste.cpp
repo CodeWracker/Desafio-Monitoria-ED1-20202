@@ -79,9 +79,6 @@ TEST(HashTableTest, TesteInsereComColizao)
     adicionarNaHashTable(tabela1, &c1, &val1);
     adicionarNaHashTable(tabela1, &c2, &val2);
     adicionarNaHashTable(tabela1, &c3, &val3);
-    /*int a = c1[0];
-    cout << a << endl;
-    cout << *tabela1->_itens[0]->_primeiro->_dado << endl;*/
     ASSERT_EQ(*tabela1->_itens[0]->_primeiro->_dado, val2);
 
     ASSERT_EQ(*tabela1->_itens[1]->_primeiro->_dado, val1);
@@ -201,6 +198,7 @@ TEST(HashTableTest, TesteRemoveSemColisao)
     removerDaHashTable(tabela, c3);
     busca = buscarElementoNaHashTable(tabela, c3);
     ASSERT_EQ(busca, nullptr);
+    EXPECT_THROW(removerDaHashTable(tabela, 4), posicao_invalida_exception);
     destroiHashTable(tabela);
 }
 TEST(HashTableTest, TesteRemoveComColisao)
@@ -261,6 +259,7 @@ TEST(HashTableTest, TesteRemoveComColisao)
     removerDaHashTable(tabela, c9);
     busca = buscarListaNaHashTable(tabela, c3);
     ASSERT_EQ(busca->_primeiro->_proximo->_proximo, nullptr);
+    ASSERT_EQ(tabela->_itens[2]->_quantidade, 2);
 
     removerDaHashTable(tabela, c5);
     busca = buscarListaNaHashTable(tabela, c2);

@@ -26,6 +26,13 @@ class adicionar_em_tabela_nula_exception : public std::exception
         return "Não é possivel adicionar em null";
     }
 };
+class remover_em_tabela_nula_exception : public std::exception
+{
+    virtual const char *what() const throw()
+    {
+        return "Não é possivel remover em null";
+    }
+};
 
 class chave_igual_exception : public std::exception
 {
@@ -53,12 +60,10 @@ int stringValue(string str)
 {
     int val = 0;
     char aux;
-    //cout << "val = " << val << endl;
     for (int i = 0; i < str.length(); i++)
     {
         aux = str[i];
         val = val + (i + str.length()) * aux;
-        //cout << "val = " << val << endl;
     }
 
     return val;
@@ -82,9 +87,7 @@ int hashFunction(char chave, int tam)
 int hashFunction(string chave, int tam)
 {
     int k = stringValue(chave);
-    //cout << "string value = " << k << endl;
     k = k % tam;
-    //cout << "k = " << k << endl;
     return k;
 }
 
@@ -154,7 +157,7 @@ template <typename TKey, typename TData>
 void removerDaHashTable(HashTable<TKey, TData> *tabela, TKey chave)
 {
     if (tabela == nullptr)
-        throw adicionar_em_tabela_nula_exception();
+        throw remover_em_tabela_nula_exception();
     int pos = hashFunction(chave, tabela->_tamanho);
     removerEspecifico(tabela->_itens[pos], chave);
 }
@@ -187,7 +190,6 @@ ListaEncadeada<TKey, TData> *buscarListaNaHashTable(HashTable<TKey, TData> *tabe
     if (tabela == nullptr)
         throw adicionar_em_tabela_nula_exception();
     int pos = hashFunction(chave, tabela->_tamanho);
-    //cout << pos << endl;
     return tabela->_itens[pos];
 }
 
