@@ -126,7 +126,7 @@ TEST(HashTableTest, TesteBuscaComColisao)
     ---|---|---
     0|meire ->|  nullptr
     1|joao ->|  rafaelli -> manu -> perna
-    2|julio ->|  gustavo -> Ykky
+    2|julio ->|  gustavo -> yky
     3|carol ->|  vinicius
     */
 
@@ -150,7 +150,7 @@ TEST(HashTableTest, TesteBuscaComColisao)
     string c8 = "G";
     string val8 = "gustavo";
     string c9 = "K";
-    string val9 = "Ykky";
+    string val9 = "yky";
     string c10 = "H";
     string val10 = "vinicius";
 
@@ -209,7 +209,7 @@ TEST(HashTableTest, TesteRemoveComColisao)
     ---|---|---
     0|meire ->|  nullptr
     1|joao ->|  rafaelli -> manu -> perna
-    2|julio ->|  gustavo -> Ykky
+    2|julio ->|  gustavo -> yky
     3|carol ->|  vinicius
     */
 
@@ -233,7 +233,7 @@ TEST(HashTableTest, TesteRemoveComColisao)
     string c8 = "F"; //2
     string val8 = "gustavo";
     string c9 = "J"; //2
-    string val9 = "Ykky";
+    string val9 = "yky";
     string c10 = "G"; //3
     string val10 = "vinicius";
 

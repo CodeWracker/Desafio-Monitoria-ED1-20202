@@ -111,5 +111,5 @@ pos|value| lista de colisões
 ---|---|---
 0|meire ->|  nullptr
 1|joao ->|  rafaelli -> manu -> perna
-2|julio ->|  gustavo -> Ykky
+2|julio ->|  gustavo -> yky
 3|carol ->|  vinicius
