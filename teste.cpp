@@ -291,8 +291,8 @@ TEST(HashTableTest, TesteDestroiSemColisao)
     adicionarNaHashTable(tabela, &c1, &val1);
     adicionarNaHashTable(tabela, &c2, &val2);
     adicionarNaHashTable(tabela, &c3, &val3);
-    int *a = (int *)calloc(1, sizeof(int));
-    /*cout << a << endl;
+    /*int *a = (int *)calloc(1, sizeof(int));
+    cout << a << endl;
     free(a);
     cout << a << endl;*/
     destroiHashTable(tabela);
