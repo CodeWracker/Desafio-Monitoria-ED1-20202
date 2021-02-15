@@ -28,14 +28,14 @@ k: chave
 
 # Testes
 
-## Teste 1 - Inicialização
+### Teste 1 - Inicialização
 Testa se está criando certo a Tabela
 - Inicia ela vazia com tamanho 7
 - Verifica se ta tudo vazio mesmo
 - Inicia outra vazia com tamanho 17
 - Verifica se ta tudo vazio mesmo
 
-## Teste 2 - Insersão sem colisão
+### Teste 2 - Insersão sem colisão
 Testa se consegue Criar a tabela e inserir algum dado nela
 - Inicia a tabela vazia com tamanho 7
 - Verifica se ela esta vazia
@@ -46,7 +46,7 @@ Testa se consegue Criar a tabela e inserir algum dado nela
 - verifica se os elementos estão na lista e se não houve colisão
 - Tenta inserir um valor usando A MESMA chave (retorna um erro)
 
-## Teste 3 - Insere com colisão
+### Teste 3 - Insere com colisão
 Testa se consegue Criar a tabela e inserir algum dado nela, causando colisões
 - Inicia a tabela vazia com tamanho 3
 - insere 3 elemento com string na chave e no valor
