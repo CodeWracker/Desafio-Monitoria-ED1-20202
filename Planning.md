@@ -73,7 +73,7 @@ Testa se consegue remover dados de uma lista que não possui nenhuma colisão
 - Remove um e verifica se aquela posição agora é nula 
 - tenta remover de um elemento nulo (deve dar um throw error)
 
-### Teste 7 - Remover com colisõa
+### Teste 7 - Remover com colisão
 
 Testa se consegue remover dados de uma lista que possui colisão
 - Cria uma lista de tamanho 4, com 10 elementos
